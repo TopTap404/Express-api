@@ -33,4 +33,14 @@ router.delete('/:id', (req, res, next) => {
   })
 });
 
+router.put('/:id', (req, res, next) => {
+    Park.findByIdAndUpdate(req.params.id,req.body).exec()
+    .then(parks => {
+        res.json(parks);
+    })
+    .catch(err => {
+        next(err);
+    })
+  });
+
 module.exports = router;

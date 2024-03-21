@@ -33,4 +33,14 @@ router.delete('/:id', (req, res, next) => {
   })
 });
 
+router.put('/:id', (req, res, next) => {
+    Booking.findByIdAndUpdate(req.params.id,req.body).exec()
+    .then(books => {
+        res.json(books);
+    })
+    .catch(err => {
+        next(err);
+    })
+  });
+
 module.exports = router;

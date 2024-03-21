@@ -33,4 +33,14 @@ router.delete('/:id', (req, res, next) => {
   })
 });
 
+router.put('/:id', (req, res, next) => {
+    User.findByIdAndUpdate(req.params.id,req.body).exec()
+    .then(users => {
+        res.json(users);
+    })
+    .catch(err => {
+        next(err);
+    })
+  });
+
 module.exports = router;
