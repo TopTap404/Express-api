@@ -23,6 +23,16 @@ router.post('/', (req, res, next) => {
       });
 });
 
+router.get('/:id', (req, res, next) => {
+    User.findById(req.params.id).exec()
+    .then(users => {
+        res.json(users);
+    })
+    .catch(err => {
+        next(err);
+    })
+  });
+
 router.delete('/:id', (req, res, next) => {
   User.findByIdAndDelete(req.params.id).exec()
   .then(users => {
